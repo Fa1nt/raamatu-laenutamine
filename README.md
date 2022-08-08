@@ -1,6 +1,6 @@
 # raamatu-laenutamine
 
-Kaust backend on vaja avada Java IDE-s ja käivitada BackendApplication.java failist.
+Kaust backend on vaja avada Java IDE-s ja käivitada BackendApplication.java failist. Kasutajanimi on 'user' ja parool on 'password'.
 
 Kaust frontend on vaja avada terminalis ja kasutada
 
