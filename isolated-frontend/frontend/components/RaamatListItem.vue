@@ -28,26 +28,20 @@ export default {
   },
   methods: {
     broneeriItem () {
-      this.$services.raamat.broneeri(this.raamat).then((data) => {
-        this.raamat.broneeritud = !this.raamat.broneeritud
-      })
+      this.raamat.broneeritud = !this.raamat.broneeritud
     },
     laenutaItem () {
-      this.$services.raamat.laenuta(this.raamat).then((data) => {
-        this.raamat.laenutatud = !this.raamat.laenutatud
-        if (this.raamat.laenutatud === true) {
-          let date = new Date()
-          date.setDate(date.getDate() + 28)
-          this.raamat.kuup2ev = date.toISOString().split('T')[0]
-        } else {
-          this.raamat.kuup2ev = null
-        }
-      })
+      this.raamat.laenutatud = !this.raamat.laenutatud
+      if (this.raamat.laenutatud === true) {
+        let date = new Date()
+        date.setDate(date.getDate() + 28)
+        this.raamat.kuup2ev = date.toISOString().split('T')[0]
+      } else {
+        this.raamat.kuup2ev = null
+      }
     },
     deleteItem () {
-      this.$services.raamat.deleteItem(this.raamat.id).then(() => {
-        this.$emit('delete', this.raamat)
-      })
+      this.$emit('delete', this.raamat)
     }
   }
 }

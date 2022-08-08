@@ -22,8 +22,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/services.js',
-    '~/plugins/interceptor.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,12 +41,8 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    proxy: true,
-    host: 'localhost',
-    prefix: '/raamat/'
-  },
-  proxy: {
-    '/raamat/': 'http://localhost:8080/'
+    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
+    baseURL: '/'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

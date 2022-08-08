@@ -33,10 +33,8 @@ export default {
   },
   methods: {
     create() {
-      this.$services.raamat.create(this.titleOfNewRaamat).then((data) => {
-        this.$emit('create', data)
-        this.titleOfNewRaamat = ''
-      })
+      this.raamatud.push({ id: this.titleOfNewRaamat, pealkiri: this.titleOfNewRaamat, broneeritud: false, laenutatud: false, kuup2ev: null })
+      this.titleOfNewRaamat = ''
     },
     deleteItem (item) {
       this.raamatud.splice(this.raamatud.indexOf(item), 1)

@@ -1,44 +1,92 @@
 <template>
   <div class="container">
     <h1 class="title">
-      Raamatu laenutamine
+      Sisselogimine
     </h1>
-    <raamat-list :raamatud="raamatud" />
+    <form @submit.prevent="performLogin" action="post">
+      <p>
+        <input
+          id="username"
+          v-model="username"
+          type="text"
+          name="username"
+          placeholder="Kasutajanimi"
+          required
+          autofocus
+        >
+      </p>
+      <p>
+        <input
+          id="password"
+          v-model="password"
+          type="password"
+          name="password"
+          placeholder="Parool"
+          required
+        >
+      </p>
+      <button type="submit">
+        Logi sisse
+      </button>
+    </form>
   </div>
 </template>
-
 <script>
-import RaamatList from '~/components/RaamatList.vue'
+
 export default {
-  components: {
-    RaamatList
-  },
   data () {
     return {
-      raamatud: {
-        type: Array
-      }
+      username: '',
+      password: ''
     }
   },
-  asyncData (ctx) {
-    return {
-      raamatud: [
-        {
-          'id': '1',
-          'pealkiri': 'A',
-          'broneeritud': false,
-          'laenutatud': false,
-          'kuup2ev': null
-        },
-        {
-          'id': '2',
-          'pealkiri': 'B',
-          'broneeritud': true,
-          'laenutatud': false,
-          'kuup2ev': null
-        }
-      ]
+  methods: {
+    async performLogin () {
+      if (await this.$services.login.performLogin(this.username, this.password)) {
+        this.$router.push('raamat')
+      } else {
+        this.username = ''
+        this.password = ''
+      }
     }
   }
 }
 </script>
+<style>
+form {
+  width: 200px;
+  margin: auto;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px black solid;
+  background: none;
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  background-color: #f0c808;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+</style>
