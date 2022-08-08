@@ -1,5 +1,7 @@
 # raamatu-laenutamine
 
+Ühe autentitud kasutajaga rakendus raamatute lisamiseks, broneerimiseks, laenutamiseks, kustutamiseks.
+
 Kaust backend on vaja avada Java IDE-s ja käivitada BackendApplication.java failist. Kasutab porti 8080. Kasutajanimi on 'user' ja parool on 'password'.
 
 Kaust frontend on vaja avada terminalis ja kasutada
